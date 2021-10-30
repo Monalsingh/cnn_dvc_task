@@ -6,6 +6,7 @@ import yaml
 import pandas as pd
 import argparse
 import preprocess_data as preprocess
+import pickle
 
 def read_params(config_path):
     with open(config_path) as yaml_file:
@@ -30,3 +31,5 @@ if __name__=="__main__":
     train, test = preprocess.get_data(data_path)
     print(train)
     print(test)
+    with open(os.path.join(dir_, "img.csv"), "w") as f:
+        pass
