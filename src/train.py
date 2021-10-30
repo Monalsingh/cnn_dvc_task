@@ -1,4 +1,3 @@
-import tensorflow as tf
 
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
@@ -11,18 +10,12 @@ def fix_gpu():
 
 
 fix_gpu()
-#import os
+
 import yaml
 import argparse
-from tensorflow.keras.layers import Input, Lambda, Dense, Flatten
+from tensorflow.keras.layers import  Dense, Flatten
 from tensorflow.keras.models import Model
 from tensorflow.keras.applications.vgg16 import VGG16
-#from tensorflow.keras.models import load_model
-#from tensorflow.keras.applications.vgg16 import preprocess_input
-#from tensorflow.keras.preprocessing import image
-#from tensorflow.keras.preprocessing.image import ImageDataGenerator,load_img
-#from tensorflow.keras.models import Sequential
-#import numpy as np
 from glob import glob
 import get_data
 
