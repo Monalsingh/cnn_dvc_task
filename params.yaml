@@ -4,10 +4,16 @@ base:
   target_col: TARGET
 
 data_source:
-  s3_source: data_given/winequality.csv
+  s3_source_train: data_given/train/
+  s3_source_test: data_given/test/
 
 load_data:
-  raw_dataset_csv: data_given/winequality.csv
+  raw_data_train_1: data_given/train/covid
+  raw_data_train_2: data_given/train/normal
+  raw_data_train_3: data_given/train/viral
+  raw_data_test_1: data_given/test/covid
+  raw_data_test_2: data_given/test/normal
+  raw_data_test_3: data_given/test/viral
 
 split_data:
   train_path: data_given/train
