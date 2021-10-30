@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  training:
+    cmd: python src/train.py --config=params.yaml
+    deps:
+    - path: src/get_data.py
+      md5: ced01fc909b8634ec792d06baca68bff
+      size: 1060
+    - path: src/preprocess_data.py
+      md5: e6633c628dc2a0fed38967c1e95930c4
+      size: 2297
+    - path: src/train.py
+      md5: 54a350519476e0eea9fb1ab22b290fab
+      size: 2574
+    outs:
+    - path: saved_models/model_vgg16.h5
+      md5: b56d959bb35d0d0e99e65f100209fa47
+      size: 59841400
