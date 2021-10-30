@@ -3,10 +3,8 @@
 ## return dataframe
 import os
 import yaml
-import pandas as pd
 import argparse
 import preprocess_data as preprocess
-import pickle
 
 def read_params(config_path):
     with open(config_path) as yaml_file:
@@ -23,13 +21,17 @@ def get_data_path(config_path):
     data_path.append(test_data_path)
     return data_path
 
-if __name__=="__main__":
+#if __name__=="__main__":
+def main():
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
     parsed_args = args.parse_args()
     data_path = get_data_path(config_path=parsed_args.config)
-    train, test = preprocess.get_data(data_path)
-    print(train)
-    print(test)
-    with open(os.path.join(dir_, "img.csv"), "w") as f:
-        pass
+    train,cv,test = preprocess.get_data(data_path)
+    return train,cv,test
+    #print(train)
+    #print(cv)
+    #print(test)
+    #with open(os.path.join('data/raw', "img.csv"), "w") as f:
+    #    pass
+main()
