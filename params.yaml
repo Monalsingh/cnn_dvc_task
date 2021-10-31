@@ -25,7 +25,7 @@ estimators:
       #batch_size: 2
       model: 'VGG16'
       #model: 'RESNET50'
-      epochs: 5
+      epochs: 30
       batch_size: 4
       target_size: 128
 
