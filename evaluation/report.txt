@@ -1,0 +1,9 @@
+Time: 20211031_1106
+Evaluation on test set details....
+loss function used: categorical_crossentropy
+Optimizer used: adam
+Epochs used: 1
+Batch size: 2
+Image target size: 128
+test data accuracy66.66666865348816
+=======================================================
