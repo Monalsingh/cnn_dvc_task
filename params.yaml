@@ -21,8 +21,10 @@ estimators:
     params:
       loss: 'categorical_crossentropy'
       optimizer: 'adam'
-      epochs: 1
-      batch_size: 2
+      #epochs: 1
+      #batch_size: 2
+      epochs: 2
+      batch_size: 4
       target_size: 128
 
 model_dir: saved_models
