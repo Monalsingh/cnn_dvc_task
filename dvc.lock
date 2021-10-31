@@ -10,9 +10,22 @@ stages:
       md5: e6633c628dc2a0fed38967c1e95930c4
       size: 2297
     - path: src/train.py
-      md5: 54a350519476e0eea9fb1ab22b290fab
-      size: 2574
+      md5: 52a7b1ee5edb8d9394bcc678ad5b9543
+      size: 2209
     outs:
     - path: saved_models/model_vgg16.h5
-      md5: b56d959bb35d0d0e99e65f100209fa47
-      size: 59841400
+      md5: 0f2c640b0dcb8bae34f5bacba2ae7d82
+      size: 59233144
+  evaluating:
+    cmd: python src/to_predict.py --config=params.yaml
+    deps:
+    - path: saved_models/model_vgg16.h5
+      md5: 0f2c640b0dcb8bae34f5bacba2ae7d82
+      size: 59233144
+    - path: src/get_data.py
+      md5: ced01fc909b8634ec792d06baca68bff
+      size: 1060
+    outs:
+    - path: evaluation/report.txt
+      md5: 8089cfe09f7d185667f0b957ce703733
+      size: 274
