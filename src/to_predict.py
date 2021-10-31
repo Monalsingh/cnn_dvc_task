@@ -100,7 +100,7 @@ if __name__=="__main__":
     f.write("Epochs used: " + str(epochs)+'\n')
     f.write("Batch size: " + str(batch_size)+'\n')
     f.write("Image target size: "+str(target_size)+'\n')
-    f.write("test data accuracy" + str(scores[1] * 100)+'\n')
+    f.write("test data accuracy: " + str(scores[1] * 100)+'\n')
     f.write("=======================================================" + '\n')
     f.close()
 
