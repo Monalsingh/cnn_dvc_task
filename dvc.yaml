@@ -9,12 +9,12 @@ stages:
       - report/params.json:
           cache: false
     outs:
-    - saved_models/model_vgg16.h5
+    - saved_models/model.h5
   evaluating:
     cmd: python src/to_predict.py --config=params.yaml
     deps:
       - src/get_data.py
-      - saved_models/model_vgg16.h5
+      - saved_models/model.h5
     metrics:
       - report/scores.json:
           cache: false

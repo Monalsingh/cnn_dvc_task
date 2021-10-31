@@ -17,13 +17,15 @@ split_data:
   test_size: 0.2
 
 estimators:
-  VGG_transer_learning:
+  Transer_learning:
     params:
       loss: 'categorical_crossentropy'
       optimizer: 'adam'
       #epochs: 1
       #batch_size: 2
-      epochs: 2
+      model: 'VGG16'
+      #model: 'RESNET50'
+      epochs: 5
       batch_size: 4
       target_size: 128
 

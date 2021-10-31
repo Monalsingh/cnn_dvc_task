@@ -16,12 +16,13 @@ def read_params(config_path):
 
 def get_hyperparam(config_path):
     config = read_params(config_path)
-    loss = config["estimators"]["VGG_transer_learning"]["params"]["loss"]
-    optimizer = config["estimators"]["VGG_transer_learning"]["params"]["optimizer"]
-    epochs = config["estimators"]["VGG_transer_learning"]["params"]["epochs"]
-    batch_size = config["estimators"]["VGG_transer_learning"]["params"]["batch_size"]
-    target_size = config["estimators"]["VGG_transer_learning"]["params"]["target_size"]
-    return loss, optimizer, epochs, batch_size, target_size
+    loss = config["estimators"]["Transer_learning"]["params"]["loss"]
+    optimizer = config["estimators"]["Transer_learning"]["params"]["optimizer"]
+    epochs = config["estimators"]["Transer_learning"]["params"]["epochs"]
+    batch_size = config["estimators"]["Transer_learning"]["params"]["batch_size"]
+    target_size = config["estimators"]["Transer_learning"]["params"]["target_size"]
+    model_name = config["estimators"]["Transer_learning"]["params"]["model"]
+    return loss, optimizer, epochs, batch_size, target_size, model_name
 
 def get_score_filename(config_path):
     config = read_params(config_path)
@@ -55,9 +56,9 @@ if __name__=="__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
     parsed_args = args.parse_args()
-    loss, optimizer, epochs, batch_size, target_size = get_hyperparam(config_path=parsed_args.config)
+    loss, optimizer, epochs, batch_size, target_size, model_name = get_hyperparam(config_path=parsed_args.config)
     scores_file = get_score_filename(config_path=parsed_args.config)
-    model = load_model('saved_models/model_vgg16.h5')
+    model = load_model('saved_models/model.h5')
     print("model loaded.......")
     _, _, test = get_data.main()
     #print(test)
@@ -100,6 +101,7 @@ if __name__=="__main__":
     f.write("Time: " + datetime.now().strftime('%Y%m%d_%H%M') + '\n')
     f.write("Evaluation on test set details...."+'\n')
     f.write("loss function used: "+str(loss)+'\n')
+    f.write("model used: " + str(model_name) + '\n')
     f.write("Optimizer used: " + str(optimizer)+'\n')
     f.write("Epochs used: " + str(epochs)+'\n')
     f.write("Batch size: " + str(batch_size)+'\n')

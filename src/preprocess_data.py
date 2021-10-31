@@ -42,7 +42,7 @@ def preprocess_data1():
 
 def get_info(config_path):
     config = read_params(config_path)
-    target_size = config["estimators"]["VGG_transer_learning"]["params"]["target_size"]
+    target_size = config["estimators"]["Transer_learning"]["params"]["target_size"]
     return target_size
 
 

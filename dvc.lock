@@ -7,31 +7,31 @@ stages:
       md5: ced01fc909b8634ec792d06baca68bff
       size: 1060
     - path: src/preprocess_data.py
-      md5: e6633c628dc2a0fed38967c1e95930c4
-      size: 2297
+      md5: 22b834b34a972cc53866f229924e5133
+      size: 2293
     - path: src/train.py
-      md5: d3ca2d59b9d0adc5928ef52b2fb66e32
-      size: 2738
+      md5: 878aa20a183747a535a0009b990f8153
+      size: 3383
     outs:
     - path: report/params.json
-      md5: 129bcd62a2c3d94efeac8fab91a0e9af
-      size: 140
-    - path: saved_models/model_vgg16.h5
-      md5: c8a8a853d9d745a3d9a2e93aeefeabb8
-      size: 59233144
+      md5: e89e13d520b8c7146d9650f6bd869ef4
+      size: 167
+    - path: saved_models/model.h5
+      md5: 1d52b640fa1bd95b21c536e7a2ef3087
+      size: 96060976
   evaluating:
     cmd: python src/to_predict.py --config=params.yaml
     deps:
-    - path: saved_models/model_vgg16.h5
-      md5: c8a8a853d9d745a3d9a2e93aeefeabb8
-      size: 59233144
+    - path: saved_models/model.h5
+      md5: 1d52b640fa1bd95b21c536e7a2ef3087
+      size: 96060976
     - path: src/get_data.py
       md5: ced01fc909b8634ec792d06baca68bff
       size: 1060
     outs:
     - path: evaluation/report.txt
-      md5: 33b0337c11009cf4acbf73be4dcf1b55
-      size: 276
+      md5: be452b65b82e10b46cbbad9f754f3d3a
+      size: 298
     - path: report/scores.json
-      md5: f71a21f978fb54d599ca3ef4e7b6e6ab
+      md5: f36bd8654b548fce360710113f4a0422
       size: 44
