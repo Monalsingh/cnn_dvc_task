@@ -25,7 +25,7 @@ contextvars==2.4
 cookiecutter==1.7.3
 cryptography==35.0.0
 cycler==0.11.0
-dataclasses==0.6
+dataclasses==0.8
 decorator==4.4.2
 dictdiffer==0.9.0
 diskcache==5.2.1
