@@ -23,7 +23,7 @@ estimators:
       optimizer: 'adam'
       epochs: 1
       batch_size: 2
-      target_size: 244
+      target_size: 128
 
 model_dir: saved_models
 

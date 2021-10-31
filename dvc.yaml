@@ -7,3 +7,10 @@ stages:
     - src/train.py
     outs:
     - saved_models/model_vgg16.h5
+  evaluating:
+    cmd: python src/to_predict.py --config=params.yaml
+    deps:
+      - src/get_data.py
+      - saved_models/model_vgg16.h5
+    outs:
+      - evaluation/report.txt
