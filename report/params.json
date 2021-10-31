@@ -1,0 +1,7 @@
+{
+    "loss ": "categorical_crossentropy",
+    "optimizer ": "adam",
+    "epochs ": 1,
+    "batch_size ": 2,
+    "target_size ": 128
+}

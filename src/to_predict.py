@@ -2,13 +2,12 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.preprocessing import image
 from datetime import datetime
-from tensorflow.keras.preprocessing.image import ImageDataGenerator,load_img
-from keras.applications.vgg16 import decode_predictions
 import numpy as np
 import get_data
 import os
 import yaml
 import argparse
+import json
 
 def read_params(config_path):
     with open(config_path) as yaml_file:
@@ -24,6 +23,10 @@ def get_hyperparam(config_path):
     target_size = config["estimators"]["VGG_transer_learning"]["params"]["target_size"]
     return loss, optimizer, epochs, batch_size, target_size
 
+def get_score_filename(config_path):
+    config = read_params(config_path)
+    score_filepath = config["reports"]["scores"]
+    return score_filepath
 
 def test_data_seperator(test_generator):
     data = []     # store all the generated data batches
@@ -53,6 +56,7 @@ if __name__=="__main__":
     args.add_argument("--config", default="params.yaml")
     parsed_args = args.parse_args()
     loss, optimizer, epochs, batch_size, target_size = get_hyperparam(config_path=parsed_args.config)
+    scores_file = get_score_filename(config_path=parsed_args.config)
     model = load_model('saved_models/model_vgg16.h5')
     print("model loaded.......")
     _, _, test = get_data.main()
@@ -68,7 +72,7 @@ if __name__=="__main__":
     print("Evaluating model on single test image....")
     #img = image.load_img('data_given/test/covid/covid_19_190.png', target_size=(128, 128))
     #img = image.load_img('data_given/test/normal/normal_1312.png', target_size=(128, 128))
-    img = image.load_img('data_given/train/normal/normal_020.png', target_size=(128, 128))
+    img = image.load_img('data_given/train/normal/normal_020.png', target_size=(target_size, target_size))
     x = image.img_to_array(img)
     x = x / 255
     x = np.expand_dims(x, axis=0)
@@ -103,6 +107,12 @@ if __name__=="__main__":
     f.write("test data accuracy: " + str(scores[1] * 100)+'\n')
     f.write("=======================================================" + '\n')
     f.close()
+
+    with open(scores_file,"w") as f:
+        scores = {
+            "test_accuracy" : scores[1] * 100
+        }
+        json.dump(scores, f, indent=4)
 
 
     #label = decode_predictions(yhat)

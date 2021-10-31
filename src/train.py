@@ -18,12 +18,17 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.applications.vgg16 import VGG16
 from glob import glob
 import get_data
-
+import json
 
 def read_params(config_path):
     with open(config_path) as yaml_file:
         config = yaml.safe_load(yaml_file)
     return config
+
+def get_param_filename(config_path):
+    config = read_params(config_path)
+    param_filepath = config["reports"]["params"]
+    return param_filepath
 
 def get_hyperparam(config_path):
     config = read_params(config_path)
@@ -40,6 +45,7 @@ if __name__=="__main__":
     parsed_args = args.parse_args()
     train,cv,test = get_data.main()
     loss, optimizer, epochs, batch_size, target_size = get_hyperparam(config_path=parsed_args.config)
+    params_file = get_param_filename(config_path=parsed_args.config)
     IMAGE_SIZE = [target_size, target_size,3]
     vgg16 = VGG16(input_shape=IMAGE_SIZE, weights='imagenet', include_top=False)
     for layer in vgg16.layers:
@@ -63,6 +69,17 @@ if __name__=="__main__":
     )
 
     model.save('saved_models/model_vgg16.h5')
+
+    with open(params_file,"w") as f:
+        params = {
+            "loss ": loss,
+            "optimizer ": optimizer,
+            "epochs ": epochs,
+            "batch_size ": batch_size,
+            "target_size ": target_size
+        }
+        json.dump(params, f, indent=4)
+
 
 
 

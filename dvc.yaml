@@ -5,6 +5,9 @@ stages:
     - src/get_data.py
     - src/preprocess_data.py
     - src/train.py
+    metrics:
+      - report/params.json:
+          cache: false
     outs:
     - saved_models/model_vgg16.h5
   evaluating:
@@ -12,5 +15,8 @@ stages:
     deps:
       - src/get_data.py
       - saved_models/model_vgg16.h5
+    metrics:
+      - report/scores.json:
+          cache: false
     outs:
       - evaluation/report.txt
