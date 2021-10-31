@@ -1,8 +1,8 @@
 {
     "loss ": "categorical_crossentropy",
     "optimizer ": "adam",
-    "model ": "RESNET50",
-    "epochs ": 2,
+    "model ": "VGG16",
+    "epochs ": 30,
     "batch_size ": 4,
     "target_size ": 128
 }
